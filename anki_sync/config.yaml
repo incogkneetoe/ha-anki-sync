@@ -1,0 +1,23 @@
+name: Anki Sync
+version: "0.1.0"
+slug: anki_sync
+description: Headless Anki collection that syncs with AnkiWeb and exposes an AnkiConnect-style API through Ingress
+url: https://github.com/incogkneetoe/ha-anki-sync
+arch:
+  - aarch64
+  - amd64
+init: false
+startup: application
+boot: auto
+ingress: true
+ingress_port: 8765
+panel_icon: mdi:cards-outline
+panel_title: Anki Sync
+options:
+  ankiweb_username: ""
+  ankiweb_password: ""
+  sync_interval_minutes: 15
+schema:
+  ankiweb_username: str
+  ankiweb_password: password
+  sync_interval_minutes: int(5,1440)
