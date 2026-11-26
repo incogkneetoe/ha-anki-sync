@@ -1,5 +1,5 @@
 name: Anki Sync
-version: "0.1.0"
+version: "0.1.1"
 slug: anki_sync
 description: Headless Anki collection that syncs with AnkiWeb and exposes an AnkiConnect-style API through Ingress
 url: https://github.com/incogkneetoe/ha-anki-sync
