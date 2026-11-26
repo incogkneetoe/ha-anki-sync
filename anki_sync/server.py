@@ -424,6 +424,36 @@ def a_unsuspend(p):
     return True
 
 
+CARD_KEYS = {"lapses": int, "reps": int, "factor": int, "ivl": int, "due": int}
+
+
+def a_setSpecificValueOfCard(p):
+    """params: card, keys [..], newValues [..]. Allowed keys: lapses, reps, factor, ivl, due."""
+    c = col.get_card(int(p["card"]))
+    keys, vals = p["keys"], p["newValues"]
+    if len(keys) != len(vals):
+        raise Exception("keys and newValues must be the same length")
+    for k in keys:
+        if k not in CARD_KEYS:
+            raise Exception(f"unsupported card key: {k}")
+    for k, v in zip(keys, vals):
+        setattr(c, k, CARD_KEYS[k](v))
+    col.update_card(c)
+    mark_dirty()
+    return [True] * len(keys)
+
+
+def a_forgetCards(p):
+    """params: cards, restorePosition (default true), resetCounts (default true)."""
+    col.sched.schedule_cards_as_new(
+        p["cards"],
+        restore_position=bool(p.get("restorePosition", True)),
+        reset_counts=bool(p.get("resetCounts", True)),
+    )
+    mark_dirty()
+    return None
+
+
 def a_changeNoteType(p):
     """params: notes, newModelName, fieldMap {newField: oldField or null}"""
     nids = p["notes"]

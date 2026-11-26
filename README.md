@@ -126,6 +126,8 @@ Then open AnkiDroid, and the change is there after it syncs.
 | `deleteNotes` | `notes` | |
 | `changeDeck` | `cards`, `deck` | |
 | `suspend`, `unsuspend` | `cards` | |
+| `setSpecificValueOfCard` | `card`, `keys`, `newValues` | keys: lapses, reps, factor, ivl, due (e.g. clear leech lapses, reset ease) |
+| `forgetCards` | `cards`, `restorePosition`, `resetCounts` | reset cards to new (Anki's Forget) |
 | `changeNoteType` | `notes`, `newModelName`, `fieldMap` {newField: oldField} | structural: needs a full sync |
 | `getDeckLimits`, `setDeckLimits` | `deck`, `newPerDay`, `reviewsPerDay` | |
 | `multi` | `actions` [{action, params}] | batch several calls |
